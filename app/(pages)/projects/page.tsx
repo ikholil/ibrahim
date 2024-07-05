@@ -16,7 +16,7 @@ async function getData() {
 
 export default async function Page() {
   const data = await getData();
-  console.log(data);
+
   return (
     <main className="container py-14 lg:py-28">
       <h2 className="text-center text-3xl font-semibold my-4">Projects</h2>
