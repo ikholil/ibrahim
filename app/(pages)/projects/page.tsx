@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 async function getData() {
   const res = await fetch("http://localhost:3000/api/project");
@@ -33,9 +34,9 @@ export default async function Page() {
               <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#TailwindCSS</span>
             </div>
             <div className="px-6 py-4 flex items-center justify-between">
-              <a href={liveLink} className="text-blue-500 hover:underline">
-                Github Link
-              </a>
+              <Link href={`/projects/${id}`} className="text-blue-500 hover:underline">
+                View Details
+              </Link>
               <a href={githubLink} className="text-blue-500 hover:underline">
                 Live Demo
               </a>
