@@ -1,26 +1,28 @@
-async function getData() {
-  const res = await fetch("http://localhost:3000/api/project");
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+"use client";
 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
+import { useEffect, useState } from "react";
 
-  return res.json();
-}
+export default function Page() {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetch("/api/project")
+      .then((res) => res.json())
+      .then((data) => {
+        setProjects(data.projects);
+        setLoading(false);
+      });
+  }, []);
 
-export default async function Page() {
-  const data = await getData();
+  if (loading) return "Loading";
 
   return (
     <main className="container py-14 lg:py-28">
       <h2 className="text-center text-3xl font-semibold my-4">Projects</h2>
-      <table>
+      <table className="w-full overflow-x-auto">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>SL</th>
             <th>Title</th>
             <th>date</th>
             <th>Live Link</th>
@@ -29,9 +31,9 @@ export default async function Page() {
           </tr>
         </thead>
         <tbody>
-          {data?.projects.map(({ id, title, description, thumb, date, liveLink, githubLink }: any) => (
+          {projects.map(({ id, title, description, thumb, date, liveLink, githubLink }: any, index) => (
             <tr key={id}>
-              <td>{id}</td>
+              <td>{index + 1}</td>
               <td>{title}</td>
               <td>{date}</td>
               <td>{liveLink}</td>

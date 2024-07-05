@@ -1,22 +1,37 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-async function getData(id: string) {
-  const res = await fetch(`http://localhost:3000/api/project/${id}`);
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+type Project = {
+  id: string;
+  thumb: string;
+  title: string;
+  description: string;
+  githubLink: string;
+};
 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
+export default function Page({ params }: { params: { id: string } }) {
+  const [project, setProject] = useState<Project | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  return res.json();
-}
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(`/api/project/${params.id}`);
+      const data = await res.json();
+      setProject(data.project);
+      setLoading(false);
+    };
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const data = await getData(params.id);
-  const { id, thumb, title, description, githubLink } = data.project;
+    fetchData();
+  }, [params.id]);
+
+  if (loading) return "Loading";
+
+  if (!project) return "Project not found";
+
+  const { id, thumb, title, description, githubLink } = project;
+
   return (
     <main className="container py-14 lg:py-28">
       <h2 className="text-center text-3xl font-semibold my-4">{title}</h2>
