@@ -1,15 +1,17 @@
 "use client";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { data, status, update } = useSession();
-  console.log(data, update);
+  const { status } = useSession();
+  const router = useRouter()
+
   if (status == "loading") return null;
 
-  if (status == "unauthenticated") return <p>Access Denied</p>;
+  if (status == "unauthenticated") router.push('/signin')
   return <div className="container h-screen">{children}</div>;
 }

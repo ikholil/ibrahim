@@ -7,8 +7,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { data, status, update } = useSession();
-  console.log(data?.user);
+  const { data, status } = useSession();
+
   if (status == "loading") return "loading";
 
   if (status == "unauthenticated") return <p>Access Denied</p>;

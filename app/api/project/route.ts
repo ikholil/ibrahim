@@ -1,18 +1,32 @@
 import { PrismaClient } from "@prisma/client";
-import { NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 const prisma = new PrismaClient()
-export async function POST(req: NextRequest, res: NextApiResponse) {
+
+export async function POST(req: NextRequest) {
     try {
-        const { title, description, thumb, date, liveLink, githubLink } = await req.json()
+        const data = await req.json();
+        const { title, description, date, githubLink, thumb, liveLink } = data;
+
         if (!title || !description || !date || !githubLink) {
             return NextResponse.json({ message: 'Missing fields' }, { status: 400 });
         }
-        const project = await prisma.project.create({ data: { title, description, thumb, date, liveLink, githubLink } })
-        return NextResponse.json({ message: 'User created successfully', project }, { status: 201 });
+
+        const project = await prisma.project.create({
+            data: {
+                title,
+                description,
+                date: new Date(date),
+                githubLink,
+                thumb,
+                liveLink,
+            },
+        });
+
+        return NextResponse.json({ message: 'Project created successfully', project }, { status: 201 });
 
     } catch (err) {
-        console.log(err)
+        console.error(err);
+        return NextResponse.json({ message: 'Error creating project' }, { status: 500 });
     }
 }
 
