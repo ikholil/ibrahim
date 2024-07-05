@@ -1,4 +1,5 @@
 "use client";
+import Loader from "@/components/shared/Loader";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -26,7 +27,7 @@ export default function Page({ params }: { params: { id: string } }) {
     fetchData();
   }, [params.id]);
 
-  if (loading) return "Loading";
+  if (loading) return <Loader />;
 
   if (!project) return "Project not found";
 

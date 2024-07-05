@@ -30,62 +30,32 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen w-full flex justify-center items-center">
-      <form
-        className="max-w-xl w-full rounded-md p-4 sm:p-6 shadow-2xl"
-        onSubmit={handleSubmit}>
-        <h2 className="text-center mb-5 text-3xl font-semibold">
-          Create A New Account
-        </h2>
+      <form className="max-w-xl w-full rounded-md p-4 sm:p-6 shadow-2xl" onSubmit={handleSubmit}>
+        <h2 className="text-center mb-5 text-3xl font-semibold">Create A New Account</h2>
         <div>
           <label className="block my-3 text-lg" htmlFor="name">
             Name:
           </label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            placeholder="Abdur Rahman"
-            onChange={(e) => setName(e.target.value)}
-            className="px-3 py-2 border rounded-md w-full bg-transparent focus:outline-green-500"
-            required
-          />
+          <input type="text" id="name" value={name} placeholder="Abdur Rahman" onChange={(e) => setName(e.target.value)} className="px-3 py-2 border rounded-md w-full bg-transparent focus:outline-primary" required />
         </div>
         <div>
           <label className="block my-3 text-lg" htmlFor="email">
             Email:
           </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            placeholder="rahman@gmail.com"
-            onChange={(e) => setEmail(e.target.value)}
-            className="px-3 py-2 border rounded-md w-full bg-transparent focus:outline-green-500"
-            required
-          />
+          <input type="email" id="email" value={email} placeholder="rahman@gmail.com" onChange={(e) => setEmail(e.target.value)} className="px-3 py-2 border rounded-md w-full bg-transparent focus:outline-primary" required />
         </div>
         <div>
           <label className="block my-3 text-lg" htmlFor="password">
             Password:
           </label>
-          <input
-            type="password"
-            id="password"
-            placeholder="******"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="px-3 py-2 border rounded-md w-full bg-transparent focus:outline-green-500 block mb-5"
-            required
-          />
+          <input type="password" id="password" placeholder="******" value={password} onChange={(e) => setPassword(e.target.value)} className="px-3 py-2 border rounded-md w-full bg-transparent focus:outline-primary block mb-5" required />
         </div>
-        <button
-          className="flex rounded-md py-2 px-5 justify-center bg-green-500 w-full mb-4"
-          type="submit">
+        <button className="flex rounded-md py-2 px-5 justify-center bg-primary w-full mb-4" type="submit">
           Sign Up
         </button>
         <p>
           Already Have an account?{" "}
-          <Link href="/signin" className="text-green-500 hover:underline">
+          <Link href="/signin" className="text-primary hover:underline">
             Login
           </Link>
         </p>

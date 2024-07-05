@@ -1,4 +1,5 @@
 "use client";
+import Loader from "@/components/shared/Loader";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
@@ -9,7 +10,7 @@ export default function RootLayout({
 }>) {
   const { data, status } = useSession();
 
-  if (status == "loading") return "loading";
+  if (status == "loading") return <Loader />;
 
   if (status == "unauthenticated") return <p>Access Denied</p>;
   if (data?.user.role != "admin")

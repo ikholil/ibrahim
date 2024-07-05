@@ -1,4 +1,5 @@
 "use client";
+import Loader from "@/components/shared/Loader";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -15,7 +16,7 @@ export default function Page() {
       });
   }, []);
 
-  if (loading) return "Loading";
+  if (loading) return <Loader />;
   return (
     <main className="container py-14 lg:py-28">
       <h2 className="text-center text-3xl font-semibold my-4">Projects</h2>
