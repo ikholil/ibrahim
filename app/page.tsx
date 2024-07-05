@@ -1,7 +1,7 @@
 "use client";
+import Loader from "@/components/shared/Loader";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import Loader from "./loading";
 
 export default function Home() {
   const { data: session, status } = useSession();
