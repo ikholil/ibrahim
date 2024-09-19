@@ -38,10 +38,10 @@ const SignIn = () => {
       <form className="max-w-xl w-full rounded-md p-4 sm:p-6 shadow-2xl" onSubmit={handleSubmit}>
         <h2 className="text-center mb-5 text-3xl font-semibold">Login To Your Account</h2>
         <div className="flex gap-5 mb-5 justify-center">
-          <button onClick={loginAsAdmin} className="py-2 cursor-pointer px-4 rounded-md bg-primary block">
+          <button onClick={loginAsAdmin} className="py-2 cursor-pointer px-4 rounded-md bg-primary-2 block">
             Login As Admin
           </button>
-          <button onClick={loginAsUser} className="py-2 cursor-pointer px-4 rounded-md bg-primary block">
+          <button onClick={loginAsUser} className="py-2 cursor-pointer px-4 rounded-md bg-primary-2 block">
             Login As User
           </button>
         </div>
